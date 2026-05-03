@@ -9,10 +9,16 @@ import {
 } from 'lucide-react';
 import profileImg from './assets/foto.jpeg';
 
+// Debug logs for environment
 const isProd = import.meta.env.PROD;
+console.log('🛠️ isProd =', isProd);
 const API_BASE = isProd ? '/api' : 'http://localhost:5000/api';
+console.log('🛠️ API_BASE =', API_BASE);
 const API_URL = `${API_BASE}/notes`;
 const AUTH_URL = `${API_BASE}/auth`;
+console.log('🛠️ AUTH_URL =', AUTH_URL);
+
+// Duplicate imports and constants removed
 
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
