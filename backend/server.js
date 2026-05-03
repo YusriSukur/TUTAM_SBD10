@@ -169,10 +169,13 @@ app.put('/api/notes/:id', verifyToken, async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+if (process.env.VERCEL) {
+  // Vercel will use the exported app as a Serverless Function
+  module.exports = app;
+} else {
+  // Local development
+  app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
     console.log(`Connected to Neon PostgreSQL Database`);
-});
-
-// For Vercel Serverless Functions
-module.exports = app;
+  });
+}
