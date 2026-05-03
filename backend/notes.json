@@ -1,0 +1,109 @@
+[
+  {
+    "_id": "1",
+    "title": "Roadmap Belajar Fullstack",
+    "category": "Learning",
+    "icon": "book",
+    "quote": "Belajar bertahap, bangun sesuatu, dan konsisten setiap hari. — Consistency is the key.",
+    "sections": [
+      {
+        "title": "Fundamental",
+        "items": [
+          "HTML",
+          "CSS",
+          "JavaScript Dasar",
+          "Git & GitHub",
+          "Responsive Design"
+        ]
+      },
+      {
+        "title": "Frontend",
+        "items": [
+          "JavaScript Lanjutan (ES6+)",
+          "React.js",
+          "State Management (Context / Redux)",
+          "Tailwind CSS / Styled Components",
+          "UI/UX Dasar"
+        ]
+      },
+      {
+        "title": "Backend",
+        "items": [
+          "Node.js",
+          "Express.js",
+          "REST API",
+          "MongoDB / PostgreSQL",
+          "Authentication & Authorization"
+        ]
+      }
+    ],
+    "createdAt": "2026-05-02T10:30:00.000Z",
+    "updatedAt": "2026-05-02T10:30:00.000Z"
+  },
+  {
+    "_id": "2",
+    "title": "Cara Belajar Efektif",
+    "category": "Learning",
+    "icon": "zap",
+    "quote": "Kualitas belajar lebih penting daripada kuantitas waktu yang dihabiskan.",
+    "sections": [
+      {
+        "title": "Teknik Pomodoro",
+        "items": [
+          "25 menit fokus",
+          "5 menit istirahat",
+          "Ulangi 4 kali",
+          "Istirahat panjang 30 menit"
+        ]
+      },
+      {
+        "title": "Active Recall",
+        "items": [
+          "Tes diri sendiri",
+          "Gunakan flashcards",
+          "Ajarkan ke orang lain"
+        ]
+      }
+    ],
+    "createdAt": "2026-05-01T21:15:00.000Z",
+    "updatedAt": "2026-05-01T21:15:00.000Z"
+  },
+  {
+    "_id": "1777752068847",
+    "title": "RIFAD",
+    "createdAt": "2026-05-02T20:01:08.847Z",
+    "updatedAt": "2026-05-02T20:41:48.020Z",
+    "sections": [
+      {
+        "title": "New Section",
+        "items": [
+          "enak"
+        ]
+      },
+      {
+        "title": "New Section",
+        "items": [
+          ""
+        ]
+      }
+    ],
+    "category": "Design",
+    "isFavorite": false
+  },
+  {
+    "title": "Code",
+    "category": "Programming",
+    "sections": [
+      {
+        "title": "Introduction",
+        "items": [
+          "Jadi tugas tutam membuat website"
+        ]
+      }
+    ],
+    "isFavorite": false,
+    "createdAt": "2026-05-03T07:46:35.080Z",
+    "_id": "1777794395080",
+    "userId": "1777793826397"
+  }
+]
