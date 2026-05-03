@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Plus, Search, Layout, FileText, Star, Clock, Trash2, 
-  User, Book, Zap, Lightbulb, Code, Palette, Briefcase, 
-  MoreHorizontal, Share2, Copy, X, Menu, Settings, Bell, 
+import {
+  Plus, Search, Layout, FileText, Star, Clock, Trash2,
+  User, Book, Zap, Lightbulb, Code, Palette, Briefcase,
+  MoreHorizontal, Share2, Copy, X, Menu, Settings, Bell,
   Edit3, Save, Check, Home, Layers, Hash, Archive, Info, Moon, Sun, Pin, LogOut
 } from 'lucide-react';
 import profileImg from './assets/foto.jpeg';
@@ -66,8 +66,8 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newNote, setNewNote] = useState({ title: '', category: 'Programming', content: '' });
-  
-  const [currentView, setCurrentView] = useState('home'); 
+
+  const [currentView, setCurrentView] = useState('home');
   const [activeCategory, setActiveCategory] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -294,7 +294,7 @@ function App() {
   if (!token) {
     return (
       <div className={`app-container ${!isDarkMode ? 'light-mode' : ''}`} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: 'var(--bg-app)' }}>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="auth-card"
@@ -302,34 +302,34 @@ function App() {
         >
           <h1 className="logo-cursive" style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--accent)' }}>Yusri Insight</h1>
           <h2 style={{ marginBottom: '2rem', color: 'white', fontWeight: 800 }}>{isLoginView ? 'Welcome Back' : 'Create Account'}</h2>
-          
+
           {authError && <div style={{ color: '#ef4444', marginBottom: '1.5rem', padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '0.75rem', fontSize: '0.9rem' }}>{authError}</div>}
           {authSuccess && <div style={{ color: '#22c55e', marginBottom: '1.5rem', padding: '0.75rem', background: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.3)', borderRadius: '0.75rem', fontSize: '0.9rem' }}>{authSuccess}</div>}
-          
+
           <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {!isLoginView && (
-              <input 
-                type="text" 
-                placeholder="Username" 
+              <input
+                type="text"
+                placeholder="Username"
                 value={authForm.username}
-                onChange={e => setAuthForm({...authForm, username: e.target.value})}
+                onChange={e => setAuthForm({ ...authForm, username: e.target.value })}
                 style={{ padding: '1rem', borderRadius: '1rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', color: 'white', outline: 'none', fontSize: '1rem' }}
                 required
               />
             )}
-            <input 
-              type="email" 
-              placeholder="Email Address" 
+            <input
+              type="email"
+              placeholder="Email Address"
               value={authForm.email}
-              onChange={e => setAuthForm({...authForm, email: e.target.value})}
+              onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
               style={{ padding: '1rem', borderRadius: '1rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', color: 'white', outline: 'none', fontSize: '1rem' }}
               required
             />
-            <input 
-              type="password" 
-              placeholder="Password" 
+            <input
+              type="password"
+              placeholder="Password"
               value={authForm.password}
-              onChange={e => setAuthForm({...authForm, password: e.target.value})}
+              onChange={e => setAuthForm({ ...authForm, password: e.target.value })}
               style={{ padding: '1rem', borderRadius: '1rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', color: 'white', outline: 'none', fontSize: '1rem' }}
               required
             />
@@ -337,10 +337,10 @@ function App() {
               {isLoginView ? 'Login' : 'Sign Up'}
             </button>
           </form>
-          
+
           <p style={{ marginTop: '2rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
             {isLoginView ? "Don't have an account? " : "Already have an account? "}
-            <span 
+            <span
               onClick={() => { setIsLoginView(!isLoginView); setAuthError(''); setAuthSuccess(''); }}
               style={{ color: 'var(--accent)', cursor: 'pointer', fontWeight: 700 }}
             >
@@ -427,16 +427,16 @@ function App() {
                     </div>
                     <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-end', height: '100px' }}>
                       {activityData.map((d, i) => (
-                        <div 
-                          key={i} 
+                        <div
+                          key={i}
                           title={`${d.count} notes`}
-                          style={{ 
-                            flex: 1, 
-                            background: d.count > 0 ? `rgba(139, 92, 246, ${0.2 + (d.level * 0.2)})` : 'rgba(255,255,255,0.03)', 
+                          style={{
+                            flex: 1,
+                            background: d.count > 0 ? `rgba(139, 92, 246, ${0.2 + (d.level * 0.2)})` : 'rgba(255,255,255,0.03)',
                             height: `${20 + (d.level * 20)}%`,
                             borderRadius: '4px',
                             minWidth: '8px'
-                          }} 
+                          }}
                         />
                       ))}
                     </div>
@@ -526,16 +526,16 @@ function App() {
             <motion.div key="search" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="dashboard-body" style={{ paddingTop: '8rem' }}>
               <div className="search-bar-container" style={{ maxWidth: '1000px', margin: '0 auto 5rem', padding: '1.5rem 2.5rem', borderRadius: '2.5rem', background: 'rgba(255,255,255,0.03)' }}>
                 <Search size={32} color="#8b5cf6" />
-                <input 
-                  ref={searchInputRef} 
-                  type="text" 
-                  placeholder="Type to search anything..." 
-                  value={searchQuery} 
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder="Type to search anything..."
+                  value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   style={{ fontSize: '1.8rem', fontWeight: 700 }}
                 />
               </div>
-              
+
               <div className="quick-access-grid">
                 {filteredNotes.map(note => (
                   <div key={note._id} className="qa-card" onClick={() => { setSelectedNote(note); setCurrentView('notes'); }}>
@@ -573,11 +573,11 @@ function App() {
                 <h1 className="greeting" style={{ marginBottom: '3rem' }}>Yusri Insight Premium</h1>
                 <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', lineHeight: '1.8', maxWidth: '700px', fontWeight: 500 }}>
                   Yusri Insight Premium is a modern note-taking platform designed to empower creators, developers, and learners to build their knowledge in an organized way.
-                  <br/><br/>
+                  <br /><br />
                   By prioritizing simplicity and performance, this platform delivers a seamless writing experience and a robust management system—from personal notes to professional knowledge bases.
-                  <br/><br/>
+                  <br /><br />
                   More than just a note-taking app, this is a space to think, learn, and grow.
-                  <br/><br/>
+                  <br /><br />
                   <span style={{ color: 'var(--accent)', fontWeight: 800 }}>Version 4.0 "Yusri Insights"</span>
                 </p>
               </div>
@@ -585,27 +585,27 @@ function App() {
               {/* HANGING ID CARD ANIMATION */}
               <div style={{ position: 'relative', width: '300px', height: '600px', display: 'flex', justifyContent: 'center' }}>
                 {/* The Lanyard / Rope */}
-                <motion.div 
-                  initial={{ height: 0 }} 
-                  animate={{ height: 250 }} 
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: 250 }}
                   transition={{ delay: 0.5, duration: 1 }}
                   style={{ width: '4px', background: 'var(--accent-gradient)', position: 'absolute', top: -100, borderRadius: '2px' }}
                 />
-                
-                <motion.div 
-                  initial={{ y: -800, rotate: -30 }} 
-                  animate={{ y: 150, rotate: [5, -5, 5] }} 
-                  transition={{ 
+
+                <motion.div
+                  initial={{ y: -800, rotate: -30 }}
+                  animate={{ y: 150, rotate: [5, -5, 5] }}
+                  transition={{
                     y: { type: 'spring', damping: 15, stiffness: 80, delay: 0.2 },
                     rotate: { repeat: Infinity, duration: 4, ease: "easeInOut" }
                   }}
-                  style={{ 
-                    width: '260px', 
-                    height: '420px', 
-                    background: 'var(--bg-card)', 
-                    backdropFilter: 'blur(30px)', 
-                    border: '1px solid var(--border)', 
-                    borderRadius: '1.5rem', 
+                  style={{
+                    width: '260px',
+                    height: '420px',
+                    background: 'var(--bg-card)',
+                    backdropFilter: 'blur(30px)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '1.5rem',
                     padding: '2rem',
                     boxShadow: '0 50px 100px rgba(0,0,0,0.5)',
                     display: 'flex',
@@ -619,9 +619,9 @@ function App() {
                   <h2 style={{ fontSize: '1.8rem', fontWeight: 900, marginBottom: '0.25rem', textAlign: 'center' }}>Yusri</h2>
                   <div style={{ color: 'var(--accent)', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>Computer Engineering</div>
                   <div style={{ color: '#fbbf24', fontWeight: 800, fontSize: '0.7rem', marginBottom: '1.5rem' }}>UNIVERSITAS INDONESIA</div>
-                  
+
                   <div style={{ width: '100%', height: '1px', background: 'var(--border)', marginBottom: '1.5rem' }}></div>
-                  
+
                   <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
                     <div style={{ textAlign: 'left' }}>
                       <div style={{ fontSize: '0.6rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>ID Number</div>
@@ -645,7 +645,7 @@ function App() {
                       {activeCategory || (currentView === 'favorites' ? 'Favorites' : 'All Notes')}
                     </h2>
                     {activeCategory && (
-                      <button 
+                      <button
                         onClick={() => setActiveCategory(null)}
                         style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', color: '#94a3b8', padding: '0.4rem 0.8rem', borderRadius: '0.75rem', fontSize: '0.8rem', cursor: 'pointer' }}
                       >
@@ -677,8 +677,8 @@ function App() {
                       </div>
                       <h3 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 800 }}>No {activeCategory} notes</h3>
                       <p style={{ color: '#94a3b8', marginBottom: '2.5rem' }}>Start your journey by creating your first note in this category.</p>
-                      <button 
-                        className="add-section-btn" 
+                      <button
+                        className="add-section-btn"
                         onClick={() => startNewNote(activeCategory)}
                         style={{ maxWidth: '250px', margin: '0 auto' }}
                       >
@@ -694,16 +694,16 @@ function App() {
                     <div className="detail-banner">
                       <img src={selectedNote.imageUrl || "https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&q=80&w=2000"} alt="Banner" />
                     </div>
-                    
+
                     <div className="detail-body">
                       <div className="detail-header-card" style={{ border: '1px solid rgba(139, 92, 246, 0.3)', boxShadow: '0 25px 60px rgba(0,0,0,0.4)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
                           <div style={{ display: 'flex', gap: '0.75rem' }}>
                             {isEditing ? (
-                              <select 
-                                className="tag-pill" 
-                                value={selectedNote.category} 
-                                onChange={(e) => setSelectedNote({...selectedNote, category: e.target.value})}
+                              <select
+                                className="tag-pill"
+                                value={selectedNote.category}
+                                onChange={(e) => setSelectedNote({ ...selectedNote, category: e.target.value })}
                                 style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.4)', color: '#c084fc', outline: 'none', cursor: 'pointer' }}
                               >
                                 {['Programming', 'Design', 'Personal', 'Ideas', 'Work', 'Learning'].map(c => (
@@ -732,9 +732,9 @@ function App() {
 
                         {isEditing ? (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                            <input 
-                              className="detail-title" 
-                              value={selectedNote.title} 
+                            <input
+                              className="detail-title"
+                              value={selectedNote.title}
                               onChange={(e) => updateNoteTitle(e.target.value)}
                               style={{ background: 'transparent', border: 'none', borderBottom: '1px solid var(--border)', outline: 'none', color: 'white', width: '100%', fontSize: '3.5rem', fontWeight: 900, paddingBottom: '1rem' }}
                               placeholder="Note Title..."
@@ -750,9 +750,9 @@ function App() {
                           <div className="section-head">
                             <div className="section-num">{sIdx + 1}</div>
                             {isEditing ? (
-                              <input 
-                                className="section-title" 
-                                value={section.title} 
+                              <input
+                                className="section-title"
+                                value={section.title}
                                 onChange={(e) => updateSectionTitle(sIdx, e.target.value)}
                                 style={{ background: 'transparent', border: 'none', outline: 'none', color: 'white', fontSize: '2rem', fontWeight: 800 }}
                               />
@@ -765,8 +765,8 @@ function App() {
                               <div key={iIdx} className="item-card">
                                 <div className="item-bullet"></div>
                                 {isEditing ? (
-                                  <input 
-                                    value={item} 
+                                  <input
+                                    value={item}
                                     onChange={(e) => updateItem(sIdx, iIdx, e.target.value)}
                                     style={{ background: 'transparent', border: 'none', outline: 'none', color: 'white', flex: 1, fontSize: '1.1rem' }}
                                   />
@@ -776,8 +776,8 @@ function App() {
                               </div>
                             ))}
                             {isEditing && (
-                              <button 
-                                className="item-card" 
+                              <button
+                                className="item-card"
                                 style={{ borderStyle: 'dashed', justifyContent: 'center', color: '#94a3b8' }}
                                 onClick={() => addItem(sIdx)}
                               >
@@ -789,8 +789,8 @@ function App() {
                       ))}
 
                       {isEditing && (
-                        <button 
-                          className="add-section-btn" 
+                        <button
+                          className="add-section-btn"
                           onClick={addSection}
                         >
                           <Plus size={20} /> Add New Section
@@ -816,17 +816,17 @@ function App() {
             <motion.div className="modal-content" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onClick={(e) => e.stopPropagation()}>
               <h2 style={{ marginBottom: '2.5rem', fontSize: '2rem', fontWeight: 900 }}>Create New Note</h2>
               <form onSubmit={handleAddNote}>
-                <div className="form-group"><label>Title</label><input type="text" value={newNote.title} onChange={e => setNewNote({...newNote, title: e.target.value})} placeholder="Give it a title..." /></div>
+                <div className="form-group"><label>Title</label><input type="text" value={newNote.title} onChange={e => setNewNote({ ...newNote, title: e.target.value })} placeholder="Give it a title..." /></div>
                 <div className="form-group">
                   <label>Category</label>
-                  <select value={newNote.category} onChange={e => setNewNote({...newNote, category: e.target.value})}>
+                  <select value={newNote.category} onChange={e => setNewNote({ ...newNote, category: e.target.value })}>
                     <option value="Programming">Programming</option>
                     <option value="Design">Design</option>
                     <option value="Personal">Personal</option>
                     <option value="Ideas">Ideas</option>
                   </select>
                 </div>
-                <div className="form-group"><label>Content</label><textarea value={newNote.content} onChange={e => setNewNote({...newNote, content: e.target.value})} placeholder="What's on your mind?" /></div>
+                <div className="form-group"><label>Content</label><textarea value={newNote.content} onChange={e => setNewNote({ ...newNote, content: e.target.value })} placeholder="What's on your mind?" /></div>
                 <button type="submit" className="btn-primary">Create Note</button>
               </form>
             </motion.div>
