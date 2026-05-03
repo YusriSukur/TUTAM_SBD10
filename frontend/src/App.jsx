@@ -274,7 +274,10 @@ function App() {
         setAuthSuccess('Registration successful. Please login.');
       }
     } catch (err) {
-      setAuthError(err.response?.data?.message || 'Authentication failed');
+      console.error("Auth error details:", err.response || err);
+      const serverMsg = err.response?.data?.message;
+      const fallbackMsg = err.message || 'Authentication failed';
+      setAuthError(serverMsg || `Network/Browser Error: ${fallbackMsg}`);
     }
   };
 
