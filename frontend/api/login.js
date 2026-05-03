@@ -8,19 +8,26 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
   try {
-    console.log("ENV:", process.env.DATABASE_URL);
+    // 🔥 handle method
+    if (req.method !== 'POST') {
+      return res.status(405).json({ message: 'Method not allowed' });
+    }
 
-    const { email, password } = req.body;
+    // 🔥 parse body (WAJIB di Vercel)
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+
+    const { email, password } = body;
+
+    console.log("EMAIL:", email);
+    console.log("PASSWORD:", password);
 
     const result = await pool.query(
       'SELECT * FROM users WHERE email = $1',
       [email]
     );
+
+    console.log("DB RESULT:", result.rows);
 
     if (result.rows.length === 0) {
       return res.status(400).json({ message: 'User not found' });
@@ -28,17 +35,26 @@ export default async function handler(req, res) {
 
     const user = result.rows[0];
 
+    console.log("USER PASSWORD:", user.password);
+
     const match = await bcrypt.compare(password, user.password);
+
+    console.log("MATCH:", match);
 
     if (!match) {
       return res.status(400).json({ message: 'Wrong password' });
     }
 
-    res.status(200).json({ message: 'Login success' });
+    return res.status(200).json({
+      message: 'Login success',
+      user
+    });
 
   } catch (err) {
     console.error("ERROR LOGIN:", err);
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({
+      message: err.message
+    });
   }
 }
 
